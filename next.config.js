@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  experimental: {
+    esmExternals: "loose",
+    serverComponentsExternalPackages: ["mongodb", "@auth/mongodb-adapter"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
