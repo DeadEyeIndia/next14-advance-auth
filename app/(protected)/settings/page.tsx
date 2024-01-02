@@ -55,9 +55,10 @@ const SettingsPage = () => {
     },
   });
 
-  const isLoading = form.formState.isSubmitting;
+  // console.log(form.formState.isLoading, form.formState.isSubmitting);
 
   const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
+    // console.log(form.formState);
     startTransition(() => {
       settings(values)
         .then((data) => {
@@ -95,8 +96,9 @@ const SettingsPage = () => {
                     <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input
+                        type="text"
                         placeholder="John Doe"
-                        disabled={isPending || isLoading}
+                        disabled={isPending}
                         {...field}
                       />
                     </FormControl>
@@ -117,7 +119,7 @@ const SettingsPage = () => {
                           <Input
                             type="email"
                             placeholder="example@example.com"
-                            disabled={isPending || user.isOAuth || isLoading}
+                            disabled={isPending || user.isOAuth}
                             {...field}
                           />
                         </FormControl>
@@ -136,7 +138,7 @@ const SettingsPage = () => {
                           <Input
                             type="password"
                             placeholder="******"
-                            disabled={isPending || user.isOAuth || isLoading}
+                            disabled={isPending || user.isOAuth}
                             {...field}
                           />
                         </FormControl>
@@ -154,7 +156,7 @@ const SettingsPage = () => {
                           <Input
                             type="password"
                             placeholder="******"
-                            disabled={isPending || isLoading || user.isOAuth}
+                            disabled={isPending || user.isOAuth}
                             {...field}
                           />
                         </FormControl>
@@ -171,7 +173,7 @@ const SettingsPage = () => {
                   <FormItem>
                     <FormLabel>Role</FormLabel>
                     <Select
-                      disabled={isPending || isLoading}
+                      disabled={isPending}
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
@@ -203,7 +205,7 @@ const SettingsPage = () => {
                       </div>
                       <FormControl>
                         <Switch
-                          disabled={isPending || isLoading || user.isOAuth}
+                          disabled={isPending || user.isOAuth}
                           checked={field.value}
                           onCheckedChange={field.onChange}
                         />
